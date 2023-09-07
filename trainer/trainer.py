@@ -162,7 +162,7 @@ class Trainer(BaseTrainer):
                         pbar.update(self.pbar_step+1, "val_", val_logs)
 
                         # Save best
-                        if self._is_best_epoch(val_logs['wer'], save_max_metric_score=self.save_max_metric_score):
+                        if self._is_best_epoch(train_logs['wer'], save_max_metric_score=self.save_max_metric_score):
                             self._save_checkpoint(epoch, dl_step, is_best_epoch=True)
                         else:
                             self._save_checkpoint(epoch, dl_step, is_best_epoch=False)

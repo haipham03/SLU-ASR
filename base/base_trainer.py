@@ -157,7 +157,7 @@ class BaseTrainer:
             print(f"Start training at step {self.pbar_step+1} in epoch {self.start_epoch+1} (= {self.completed_steps+1} iterations) based on your configuration and training dataset")
 
 
-    def _save_checkpoint(self, epoch: int, dl_step: int, is_best_epoch: bool = False) -> None:
+    def _save_checkpoint(self, epoch: int, dl_step: int, is_best_epoch: bool = True) -> None:
         """
         Save checkpoint to "<save_dir>" directory, which consists of:
         Args:

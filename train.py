@@ -70,16 +70,16 @@ def main(rank, world_size, config, resume, preload):
 
     train_base_ds = initialize_module(config["train_dataset"]["path"], args=config["train_dataset"]["args"])
     vocab_dict = train_base_ds.get_vocab_dict()
-    with open('vocab.json', 'w+') as f:
-        json.dump(vocab_dict, f)
-        f.close()
+  #  with open('vocab.json', 'w+') as f:
+        #json.dump(vocab_dict, f)
+       # f.close()
     dist.barrier()
     # Create processor
-    tokenizer = Wav2Vec2CTCTokenizer("vocab.json", 
-                                    **config["special_tokens"],
-                                    word_delimiter_token="|")
-    feature_extractor = Wav2Vec2FeatureExtractor.from_pretrained(pretrained_path)
-    processor = Wav2Vec2Processor(feature_extractor=feature_extractor, tokenizer=tokenizer)
+   # tokenizer = Wav2Vec2CTCTokenizer("vocab.json", 
+   #                                 **config["special_tokens"],
+   #                                 word_delimiter_token="|")
+    feature_extractor = Wav2Vec2FeatureExtractor.from_pretrained("nguyenvulebinh/wav2vec2-base-vietnamese-250h")
+    processor = Wav2Vec2Processor.from_pretrained("nguyenvulebinh/wav2vec2-base-vietnamese-250h")
     default_collate = DefaultCollate(processor, config['meta']['sr'])
 
     # Create train dataloader
@@ -116,10 +116,10 @@ def main(rank, world_size, config, resume, preload):
 
     # Load pretrained model
     model = Wav2Vec2ForCTC.from_pretrained(
-        pretrained_path, 
+        "nguyenvulebinh/wav2vec2-base-vietnamese-250h", 
         ctc_loss_reduction="mean", 
-        pad_token_id=processor.tokenizer.pad_token_id,
-        vocab_size=len(processor.tokenizer),
+#        pad_token_id=processor.tokenizer.pad_token_id,
+ #       vocab_size=len(processor.tokenizer),
         gradient_checkpointing=False
     )
     

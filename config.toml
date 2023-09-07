@@ -1,8 +1,8 @@
 [meta]
 name = "ASR" 
-pretrained_path = "facebook/wav2vec2-base"
+pretrained_path = "nguyenvulebinh/wav2vec2-base-vietnamese-250h"
 seed = 42
-epochs = 20
+epochs = 40 
 save_dir = "saved/" 
 gradient_accumulation_steps = 2
 use_amp = false # Whether to use Automatic Mixed Precision for speeding up - https://pytorch.org/docs/stable/amp.html
@@ -11,8 +11,8 @@ sr = 16000
 max_clip_grad_norm = 5.0 # torch.nn.utils.clip_grad_norm_
 
 [special_tokens]
-bos_token = "<bos>"
-eos_token = "<eos>"
+bos_token = "<s>"
+eos_token = "</s>"
 unk_token = "<unk>"
 pad_token = "<pad>"
 
@@ -38,17 +38,17 @@ blocking = false # whether to wait until the model is uploaded (this will be ver
 [train_dataset]
 path = "base.base_dataset.BaseDataset"
     [train_dataset.args]
-    path = "/pass/your/train_dataset/path/here"
+    path = "txt_data/process_train.txt"
     preload_data = false
     delimiter = "|"
     # Only train audio files that have duration in range [min_duration, max_duration]
     # min_duration = 0.5 # if not pass, default is -np.inf
     # max_duration = 20 # if not pass, default is np.inf
-    nb_workers = 16
+    nb_workers = 8 
     
     [train_dataset.dataloader]
-    batch_size = 8
-    num_workers = 16
+    batch_size = 4 
+    num_workers = 4
     pin_memory = true 
     drop_last = true
 
@@ -60,10 +60,10 @@ path = "base.base_dataset.BaseDataset"
 [val_dataset]
 path = "base.base_dataset.BaseDataset"
     [val_dataset.args]
-    path = "/pass/your/val_dataset/path/here"
+    path = "txt_data/test.txt"
     preload_data = false
     delimiter = "|"
-    nb_workers = 16
+    nb_workers = 8
 
     [val_dataset.dataloader]
     batch_size =  1 # Set validation batch_size > 1 may yield an incorrect score due to padding (but faster :D) - https://github.com/pytorch/fairseq/issues/3227 
@@ -85,5 +85,5 @@ max_lr = 1e-5
 [trainer]
 path = "trainer.trainer.Trainer"
     [trainer.args]
-    validation_interval = 500
+    validation_interval = 2000 
     save_max_metric_score = false 
