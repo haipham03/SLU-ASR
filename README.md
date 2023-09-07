@@ -23,6 +23,7 @@
         ```cmd
         python train.py -c config.toml
         ```
+    - Change the number of workers, epochs, batch size, vv in `config.toml`
 
 <a name = "inference" ></a>
 ### Inference
