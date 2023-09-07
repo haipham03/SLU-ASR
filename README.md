@@ -35,3 +35,6 @@ python inference.py -f [Path to your list of wav file] -m [Path to model.tar]
 ```cmd
 python inference.py -f test_file_list.txt -m saved/ASR/checkpoints/best_model.tar
 ```
+
+
+This code is base on https://github.com/khanld/ASR-Wav2vec-Finetune 
