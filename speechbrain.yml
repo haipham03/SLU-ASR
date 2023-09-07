@@ -136,4 +136,3 @@ dependencies:
     - wrapt==1.14.1
     - yamllint==1.23.0
     - zipp==3.16.2
-prefix: /home/vinhpt/.conda/envs/speechbrain
