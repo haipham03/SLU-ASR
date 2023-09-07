@@ -27,13 +27,13 @@ python inference.py -f [Path to your wav file] -m [Path to model.tar]
 
 2. Transcribe a list of audio files. 
 ```cmd
-python inference.py -f [Path to your list of wav file] -m [Path to model.tar]
+python inference.py -f [Path to your list of wav file] -m [Path to model.tar] -lm [Path to LM model]
 ```
 
     
 - Example:
 ```cmd
-python inference.py -f test_file_list.txt -m saved/ASR/checkpoints/best_model.tar
+python inference.py -f test_file_list.txt -m saved/ASR/checkpoints/best_model.tar -lm 3ngram_scratch.binary
 ```
 
 
