@@ -36,5 +36,10 @@ python inference.py -f [Path to your list of wav file] -m [Path to model.tar] -l
 python inference.py -f test_file_list.txt -m saved/ASR/checkpoints/best_model.tar -lm 3ngram_scratch.binary
 ```
 
+- The output will be in `transcript_test_file_list.txt`
 
-This code is base on https://github.com/khanld/ASR-Wav2vec-Finetune 
+- To get the final output, run this the post processing file:
+```cmd
+python post_process.py
+```
+- Then the final transcript be in `process_trans_file.txt`
