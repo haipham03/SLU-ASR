@@ -19,7 +19,7 @@
 
 1. Transcribe a audio file. 
 ```cmd
-python inference.py -f [Path to your wav file] -m [Path to model.tar]
+python inference.py -f [Path to your wav file] -m [Path to model.tar] -lm [Path to LM model]
 
 # output example:
 >>> transcript: Hello World 
