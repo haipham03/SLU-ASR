@@ -1,4 +1,4 @@
-name: /data1.local/vinhpt/phh/speech2text
+name: speech2text
 channels:
   - defaults
 dependencies:
@@ -139,4 +139,3 @@ dependencies:
     - xxhash==3.3.0
     - yarl==1.9.2
     - zipp==3.16.2
-prefix: /data1.local/vinhpt/phh/speech2text
