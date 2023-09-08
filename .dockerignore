@@ -1,0 +1,17 @@
+.ipynb_checkpoints/
+dataset/
+wav2vec2-pretrained-demo/
+saved/
+huggingface-hub/
+models/
+*.gz
+*.tar
+*.out
+data/
+train_data
+txt_data/
+*.binary
+examples/
+cache/
+README.md
+output/
