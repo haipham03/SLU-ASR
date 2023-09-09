@@ -14,7 +14,7 @@ import soundfile as sf
 import torch
 from pyctcdecode import Alphabet, BeamSearchDecoderCTC, LanguageModel
 import kenlm
-from torch_audiomentations import PeakNormalization
+# from torch_audiomentations import PeakNormalization
 
 def get_decoder_ngram_model(tokenizer, ngram_lm_path):
     vocab_dict = tokenizer.get_vocab()
@@ -36,14 +36,14 @@ def get_decoder_ngram_model(tokenizer, ngram_lm_path):
                                    language_model=LanguageModel(lm_model))
     return decoder
 
-def normalize(waveform):
-    apply_augmentation = PeakNormalization()
-    waveform = waveform.reshape((1,1,waveform.shape[0]))
-    waveform_tensor = torch.tensor(waveform)
-    normalized_waveform_tensor = apply_augmentation(waveform_tensor, sample_rate=16000)
-    normalized_waveform = normalized_waveform_tensor.numpy()
-    normalized_waveform = normalized_waveform.reshape(normalized_waveform.shape[2])
-    return normalized_waveform
+# def normalize(waveform):
+#     apply_augmentation = PeakNormalization()
+#     waveform = waveform.reshape((1,1,waveform.shape[0]))
+#     waveform_tensor = torch.tensor(waveform)
+#     normalized_waveform_tensor = apply_augmentation(waveform_tensor, sample_rate=16000)
+#     normalized_waveform = normalized_waveform_tensor.numpy()
+#     normalized_waveform = normalized_waveform.reshape(normalized_waveform.shape[2])
+#     return normalized_waveform
 
 
 class Inferencer:
@@ -90,6 +90,7 @@ class Inferencer:
         input_values = self.processor(wav, sampling_rate=16000, return_tensors="pt").input_values
         logits = self.model(input_values.to(self.device)).logits
         pred_ids = torch.argmax(logits, dim=-1)
+        pred_transcript = self.processor.batch_decode(pred_ids)[0]
         beam_search_output = [
                 self.ngram_lm_model.decode(
                     logit,
@@ -97,7 +98,6 @@ class Inferencer:
                 )
                 for logit in logits.cpu().detach().numpy()
         ]
-        pred_transcript = self.processor.batch_decode(pred_ids)[0]
         if "độ c" in pred_transcript:
             print(pred_transcript,'-------------' ,beam_search_output[0].replace("độ","độ c "))
         return beam_search_output[0].replace("độ","độ c ")
@@ -114,14 +114,14 @@ class Inferencer:
             f = open(test_filepath.replace(filename, 'transcript_'+filename), 'w+')
             for line in tqdm(lines):
                 wav, _ = librosa.load(line, sr = 16000)
-                wav = normalize(wav)
+                # wav = normalize(wav)
                 transcript = self.transcribe(wav)
                 f.write(line + ' ' + transcript + '\n')
             f.close()
 
         else:
             wav, _ = librosa.load(test_filepath, sr = 16000)
-            wav = normalize(wav)
+            # wav = normalize(wav)
             print(f"transcript: {self.transcribe(wav)}")
 
 
