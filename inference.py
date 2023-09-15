@@ -98,9 +98,9 @@ class Inferencer:
                 )
                 for logit in logits.cpu().detach().numpy()
         ]
-        if "độ c" in pred_transcript:
-            print(pred_transcript,'-------------' ,beam_search_output[0].replace("độ","độ c "))
-        return beam_search_output[0].replace("độ","độ c ")
+        # if "độ c" in pred_transcript:
+        #     print(pred_transcript,'-------------' ,beam_search_output[0].replace("độ","độ c "))
+        return beam_search_output[0]
 
 
     def run(self, test_filepath):
