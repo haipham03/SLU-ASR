@@ -13,5 +13,7 @@ echo "Done getting output of model"
 
 python3 post_process.py
 
+python3 sort.py
+
 echo "Done post processing"
 
