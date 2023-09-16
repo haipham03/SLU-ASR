@@ -1,4 +1,4 @@
-### Train
+### Training
 1. Prepare your dataset
     - To put your dataset in correct format and process it run: 
         ```
