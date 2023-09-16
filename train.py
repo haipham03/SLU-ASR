@@ -12,8 +12,8 @@ warnings.filterwarnings('ignore')
 from torch.nn.parallel import DistributedDataParallel as DDP
 from torch.utils.data import DataLoader
 from time import gmtime, strftime
-from utils.utils import *
-from utils.metric import Metric
+from ASR_utils.utils import *
+from ASR_utils.metric import Metric
 from dataloader.dataset import DefaultCollate
 from transformers import Wav2Vec2ForCTC, Wav2Vec2FeatureExtractor, Wav2Vec2CTCTokenizer, Wav2Vec2Processor
 

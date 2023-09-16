@@ -10,7 +10,7 @@ from typing import Dict, List
 sys.path.append('..')
 
 from sklearn.model_selection import train_test_split
-from utils.feature import load_wav
+from ASR_utils.feature import load_wav
 from tqdm import tqdm
 from torch.utils.data import Dataset
 from dataloader.dataset import Dataset as InstanceDataset

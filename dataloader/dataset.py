@@ -2,7 +2,7 @@ import sys
 sys.path.append("../")
 import torch
 
-from utils.feature import load_wav
+from ASR_utils.feature import load_wav
 from typing import Dict
 
 class DefaultCollate:
