@@ -83,7 +83,7 @@ max_lr = 1e-5
     
 
 [trainer]
-path = "trainer.trainer.Trainer"
+path = "ASR_trainer.trainer.Trainer"
     [trainer.args]
     validation_interval = 2000 
     save_max_metric_score = false 
