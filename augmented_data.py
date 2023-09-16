@@ -88,12 +88,17 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('--input_folder', required= True, help = 'input_wav_files_folder')
     parser.add_argument('--input_jsonlfile', required= True, help = 'input_jsonlfile')
-    parser.add_argument('--output_folder', default = './', help = 'output_wav_files_folder')
+    parser.add_argument('--output_folder', default = None, help = 'output_wav_files_folder')
     parser.add_argument('--output_jsonlfile', default = './augmented_data.jsonl', help = 'output_jsonlfile')
     args = parser.parse_args()
     print(args.input_jsonlfile)
+    
+    output_folder= args.output_folder
+    
+    if args.output_folder is None:
+        output_folder = args.input_folder
 
     augment_data(input_folder= args.input_folder,
-                 output_folder= args.output_folder,
+                 output_folder= output_folder,
                  input_jsonlfile= args.input_jsonlfile,
                  output_jsonlfile= args.output_jsonlfile)
