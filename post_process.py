@@ -17,34 +17,34 @@ if __name__ == '__main__':
     save = 'process_trans_file.txt'
 
     vietnamese_numbers = {
-        '11': 'mười một',
-        '12': 'mười hai',
-        '13': 'mười ba',
-        '14': 'mười bốn',
-        '15': 'mười năm',
-        '16': 'mười sáu',
-        '17': 'mười bảy',
-        '18': 'mười tám',
-        '19': 'mười chín',
-        '10': 'mười',
-        '20': 'hai mươi',
-        '30': 'ba mươi',
-        '40': 'bốn mươi',
-        '50': 'năm mươi',
-        '60': 'sáu mươi',
-        '70': 'bảy mươi',
-        '80': 'tám mươi',
-        '90': 'chín mươi',
-        '0': 'không',
-        '1': 'một',
-        '2': 'hai',
-        '3': 'ba',
-        '4': 'bốn',
-        '5': 'năm',
-        '6': 'sáu',
-        '7': 'bảy',
-        '8': 'tám',
-        '9': 'chín'
+        ' 1 1 ': 'mười một',
+        ' 1 2 ': 'mười hai',
+        ' 1 3 ': 'mười ba',
+        ' 1 4 ': 'mười bốn',
+        ' 1 5 ': 'mười năm',
+        ' 1 6 ': 'mười sáu',
+        ' 1 7 ': 'mười bảy',
+        ' 1 8 ': 'mười tám',
+        ' 1 9 ': 'mười chín',
+        ' 1 0 ': 'mười',
+        ' 2 0 ': 'hai mươi',
+        ' 3 0 ': 'ba mươi',
+        ' 4 0 ': 'bốn mươi',
+        ' 5 0 ': 'năm mươi',
+        ' 6 0 ': 'sáu mươi',
+        ' 7 0 ': 'bảy mươi',
+        ' 8 0 ': 'tám mươi',
+        ' 9 0 ': 'chín mươi',
+        ' 0 ': 'không',
+        ' 1 ': 'một',
+        ' 2 ': 'hai',
+        ' 3 ': 'ba ',
+        ' 4 ': 'bốn',
+        ' 5 ': 'năm',
+        ' 6 ': 'sáu',
+        ' 7 ': 'bảy',
+        ' 8 ': 'tám',
+        ' 9 ': 'chín '
     }
 
     import re
@@ -56,7 +56,10 @@ if __name__ == '__main__':
             sentence = line[first_space_index + 1:]
             for key,value in vietnamese_numbers.items():
                 sentence = sentence.replace(value, key)
+            sentence = ' '.join(sentence.split())
             sentence = sentence.replace(' phần trăm', '%')
+            pattern = r'(\d) (\d) (\d) (\d)'
+            sentence = re.sub(pattern, r'\3 \4', sentence)
             pattern = r'(\d) (\d) (\d)'
             sentence = re.sub(pattern, r'\2 \3', sentence)
             pattern = r'(\d) (\d)'
