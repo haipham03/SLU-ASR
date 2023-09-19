@@ -1,6 +1,13 @@
 import pandas as pd
 import argparse
 import os
+import re
+
+def has_consecutive_duplicates(text):
+    # Use regular expressions to find consecutive duplicate words
+    pattern = r'\b(\w+)\s+\1\b'
+    return bool(re.search(pattern, text))
+
 
 if __name__ == '__main__':
     
@@ -47,8 +54,6 @@ if __name__ == '__main__':
         ' 9 ': 'chín '
     }
 
-    import re
-
     with open(save, 'w', encoding='utf-8') as file:
         for line in lines[:]:
             first_space_index = line.find(" ")
@@ -56,8 +61,10 @@ if __name__ == '__main__':
             sentence = line[first_space_index + 1:]
             for key,value in vietnamese_numbers.items():
                 sentence = sentence.replace(value, key)
+            sentence = sentence.replace('chín\n', '9\n')
+            sentence = sentence.replace('ba\n', '3\n')
             sentence = ' '.join(sentence.split())
-            sentence = sentence.replace(' phần trăm', '%')
+            sentence = sentence.replace(' phần trăm', '% ')
             pattern = r'(\d) (\d) (\d) (\d)'
             sentence = re.sub(pattern, r'\3 \4', sentence)
             pattern = r'(\d) (\d) (\d)'
@@ -82,4 +89,7 @@ if __name__ == '__main__':
                     res +=v
                     continue
                 res += 'không'
+            if has_consecutive_duplicates(res):
+                pattern = r'\b(\w+)\s+\1\b'
+                res = re.sub(pattern, r'\1', res)
             file.write(path+' '+res+'\n')
