@@ -1,0 +1,3 @@
+[submodule "CleanUNet"]
+	path = CleanUNet
+	url = https://github.com/hongquant17/CleanUNet.git
