@@ -23,7 +23,7 @@ if __name__ == '__main__':
                 # Load each line as a JSON object
                 json_object = json.loads(line)
                 wav_file = os.path.join(train_path, json_object['file'])
-                server_wav_file = '/data1.local/vinhpt/phh/ASR-Wav2vec-Finetune/data/augmented_data/' + json_object['file']
+                # server_wav_file = '/data1.local/vinhpt/phh/ASR-Wav2vec-Finetune/data/augmented_data/' + json_object['file']
                 sentence = json_object['sentence']
                 n_sentence = sentence.replace("%", " phần trăm") 
                 duration = librosa.get_duration(filename=wav_file)

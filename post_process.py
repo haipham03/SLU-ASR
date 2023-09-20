@@ -14,6 +14,8 @@ if __name__ == '__main__':
     args = argparse.ArgumentParser()
     args.add_argument('-f', '--filepath', type=str, default = 'transcript_test_file_list.txt',
                       help='Path to transcript file generate by model')
+    args.add_argument('-s', '--save_name', type=str, default = 'process_trans_file.txt',
+                      help='save name')
     args = args.parse_args()
     
     file_path = args.filepath
@@ -21,7 +23,7 @@ if __name__ == '__main__':
     with open(file_path, 'r', encoding='utf-8') as input_file:
         lines = input_file.readlines()
 
-    save = 'process_trans_file.txt'
+    save = args.save_name
 
     vietnamese_numbers = {
         ' 1 1 ': 'mười một',
@@ -93,3 +95,13 @@ if __name__ == '__main__':
                 pattern = r'\b(\w+)\s+\1\b'
                 res = re.sub(pattern, r'\1', res)
             file.write(path+' '+res+'\n')
+            
+    with open(save, 'r') as file:
+        lines = file.readlines()
+
+    # Convert the lines to lowercase and then sort them by the lowercase WAV file names in ascending order
+    sorted_lines = sorted(lines, key=lambda line: line.split('/')[-1].lower())
+
+    # Write the sorted lines to a new text file
+    with open(save, 'w') as file:
+        file.writelines(sorted_lines)
