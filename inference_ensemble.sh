@@ -12,7 +12,7 @@ python3 inference_ensemble.py -f test_file_list.txt -m $2 -lm $3
 
 echo "Done getting output of model"
 
-python3 post_process.py -s $4
+python3 post_process.py -f ens_transcript_test_file_list.txt -s $4
 
 echo "Done post processing"
 
