@@ -75,6 +75,12 @@ if __name__ == '__main__':
             sentence = re.sub(pattern, r'\1\2', sentence)
             word = sentence.split()
             sentence = ' '.join(word)
+
+            pattern = r'(\d)\s+giờ\s+(\w+)\s+(\d)'
+            result = re.sub(pattern, r'\1 giờ kém \3', sentence)
+
+            sentence = result
+
             res = ''
             for id in range(len(sentence)):
                 v = sentence[id]
