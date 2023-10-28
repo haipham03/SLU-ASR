@@ -78,6 +78,16 @@ if __name__ == '__main__':
             res = ''
             for id in range(len(sentence)):
                 v = sentence[id]
+                if v == '1' :
+                    if sentence[id+2:id+5] == 'lúc' and id+5<len(sentence):
+                        res += 'một'
+                        continue 
+                    if sentence[id+2:id+5] == 'số' and id+5<len(sentence):
+                        res += 'một'
+                        continue 
+                    if sentence[id+2:id+6] == 'chút' and id+6<len(sentence):
+                        res += 'một'
+                        continue 
                 if v != '0':
                     res += v
                     continue
