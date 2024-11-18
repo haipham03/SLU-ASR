@@ -3,6 +3,7 @@ import soundfile as sf
 import torch
 import os
 import argparse
+import random
 
 def read_file(file_path):
     lines = []
@@ -72,13 +73,14 @@ def augment_data(input_folder, output_folder, input_jsonlfile, output_jsonlfile)
         count += 1
         print(f'{count}/{total_file}')
         if example_file in lines:
-            for key, value in dict_transforms.items():
-                wav_file_path = os.path.join(input_folder, example_file)
-                wav = transform(value, wav_file_path)
-                new_wav = example_file[:-4] + key
-                list_augmented.append(lines[example_file].replace(example_file[:-4], new_wav))
-                new_wav = new_wav + '.wav'
-                save_file(wav, os.path.join(output_folder, new_wav))
+            # for key, value in dict_transforms.items(): 
+            key, value = random.choice(list(dict_transforms.items()))
+            wav_file_path = os.path.join(input_folder, example_file)
+            wav = transform(value, wav_file_path)
+            new_wav = example_file[:-4] + key
+            list_augmented.append(lines[example_file].replace(example_file[:-4], new_wav))
+            new_wav = new_wav + '.wav'
+            save_file(wav, os.path.join(output_folder, new_wav))
             # break
     print(len(list_augmented))
     export_list_augmented(output_jsonlfile, list_augmented)

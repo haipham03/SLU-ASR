@@ -16,3 +16,6 @@ cache/
 README.md
 output/
 kenlm/
+augmented_data/
+*.txt
+*.jsonl
