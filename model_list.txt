@@ -1,2 +1,0 @@
-/data1.local/vinhpt/phh/ASR-Wav2vec-Finetune/saved/ASR/checkpoints/newaug_newdenoise/best_model.tar 0.8
-/data1.local/vinhpt/phh/ASR-Wav2vec-Finetune/saved/ASR/checkpoints/newaug_newdenoise2/best_model.tar 0.2

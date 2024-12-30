@@ -76,10 +76,10 @@ if __name__ == '__main__':
             word = sentence.split()
             sentence = ' '.join(word)
 
-            pattern = r'(\d)\s+giờ\s+(\w+)\s+(\d)'
-            result = re.sub(pattern, r'\1 giờ kém \3', sentence)
+            # pattern = r'(\d)\s+giờ\s+(\w+)\s+(\d)'
+            # result = re.sub(pattern, r'\1 giờ kém \3', sentence)
 
-            sentence = result
+            # sentence = result
 
             res = ''
             for id in range(len(sentence)):

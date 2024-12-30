@@ -38,39 +38,6 @@ def extract_entities(data: dict) -> List[str]:
     """
     return [entity["filler"] for entity in data.get("entities", [])]
 
-# def compute_wer(reference: str, hypothesis: str) -> float:
-#     """
-#     Compute Word Error Rate (WER) between reference and hypothesis.
-#     """
-#     ref_words = reference.split()
-#     hyp_words = hypothesis.split()
-
-#     # Levenshtein distance table
-#     len_ref, len_hyp = len(ref_words), len(hyp_words)
-#     dp = [[0 for _ in range(len_hyp + 1)] for _ in range(len_ref + 1)]
-
-#     # Initialization
-#     for i in range(len_ref + 1):
-#         dp[i][0] = i
-#     for j in range(len_hyp + 1):
-#         dp[0][j] = j
-
-#     # Fill the DP table
-#     for i in range(1, len_ref + 1):
-#         for j in range(1, len_hyp + 1):
-#             if ref_words[i - 1] == hyp_words[j - 1]:
-#                 dp[i][j] = dp[i - 1][j - 1]  # No error
-#             else:
-#                 dp[i][j] = min(
-#                     dp[i - 1][j - 1] + 1,  # Substitution
-#                     dp[i - 1][j] + 1,      # Deletion
-#                     dp[i][j - 1] + 1       # Insertion
-#                 )
-
-#     # WER = (Substitutions + Deletions + Insertions) / Total Reference Words
-#     wer = dp[len_ref][len_hyp] / max(len_ref, 1)
-#     return round(wer, 3)
-
 def get_similarity_score(a: str, b: str) -> float:
     """
     Compute similarity score between two strings using SequenceMatcher.
@@ -155,7 +122,7 @@ def evaluate_entity_wer(reference_file: str, asr_output_file: str, output_file: 
 
 
 # Example usage
-reference_file = "/home/fithaui/workspace/BKAI-Vietnamese-SLU/slu_data/processed_output/test.jsonl"  # Path to your reference JSONL file
-asr_file = "/home/fithaui/workspace/BKAI-Vietnamese-SLU/SLU-ASR/process_trans_file_ema_esc50.txt"       # Path to your ASR JSONL file
-output_file = "/home/fithaui/workspace/BKAI-Vietnamese-SLU/hyp_entities.txt"  
+reference_file = "../slu_data/processed_output/test.jsonl"  # Path to your reference JSONL file
+asr_file = "process_trans_file_4ngram_test.txt"       # Path to your ASR JSONL file
+output_file = "../hyp_entities.txt"  
 evaluate_entity_wer(reference_file, asr_file, output_file)

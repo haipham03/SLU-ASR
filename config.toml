@@ -60,7 +60,7 @@ path = "base.base_dataset.BaseDataset"
 [val_dataset]
 path = "base.base_dataset.BaseDataset"
     [val_dataset.args]
-    path = "txt_data/test.txt"
+    path = "txt_data/val.txt"
     preload_data = false
     delimiter = "|"
     nb_workers = 8

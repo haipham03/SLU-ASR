@@ -19,3 +19,14 @@ kenlm/
 augmented_data/
 *.txt
 *.jsonl
+logger/
+*.txt
+base/base_trainer_train_logs_ema.py
+base/base_trainer_val_logs_ema.py
+*/__pycache__/
+ASR_trainer/trainer_train_logs_ema.py
+ASR_trainer/trainer_val_logs_ema.py
+Visualize/
+saved/
+visualize.py
+temp/
